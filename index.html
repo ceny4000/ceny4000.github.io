@@ -50,6 +50,41 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-08-01T08:13:24.000Z"><a href="/2017/08/01/SQL-Common-Table-Expression-CTE-With-As/">2017-08-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/08/01/SQL-Common-Table-Expression-CTE-With-As/">SQL Common Table Expression(CTE) With As</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>使用Common Table Expression 簡化SQL語法</p>
+<p>將原本放在SQL 內的子查詢搬移到外面使用with as語法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">with</div><div class="line">ta as (</div><div class="line">    select product_id, rsa from t_a</div><div class="line">),</div><div class="line">tb as (</div><div class="line">    select product_id, rsb from t_b</div><div class="line">)</div><div class="line">select ta.rsa, tb.rsb from t_c tc</div><div class="line">left join ta ta on ta.product_id = tc.product_id</div><div class="line">left join tb tb on tb.product_id = tc.product_id</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-07-20T06:48:49.000Z"><a href="/2017/07/20/Java-ExecutorService-多執行緒/">2017-07-20</a></time>
       
       
@@ -61,7 +96,7 @@
     <div class="entry">
       
         <p>Java 8 開多執行緒</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//共開多少thread</div><div class="line">ExecutorService executor = null;</div><div class="line">try &#123;</div><div class="line">    executor = Executors.newFixedThreadPool(1);</div><div class="line">    executor.submit(() -&gt; &#123;</div><div class="line">        //You&apos;re Source code</div><div class="line">    &#125;);</div><div class="line">&#125; catch (Exception e) &#123;</div><div class="line"></div><div class="line">&#125; finally &#123;</div><div class="line">    try &#123;</div><div class="line">        //都送出後shutdown，thraed才會回收</div><div class="line">        executor.shutdown();</div><div class="line">    &#125; catch (Exception e) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//共開多少thread</div><div class="line">ExecutorService executor = null;</div><div class="line">try &#123;</div><div class="line">    executor = Executors.newFixedThreadPool(1);</div><div class="line">    executor.submit(() -&gt; &#123;</div><div class="line">        //You&apos;re Source code</div><div class="line">    &#125;);</div><div class="line">&#125; catch (Exception e) &#123;</div><div class="line"></div><div class="line">&#125; finally &#123;</div><div class="line">    try &#123;</div><div class="line">        //都送出後shutdown，thread才會回收</div><div class="line">        executor.shutdown();</div><div class="line">    &#125; catch (Exception e) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>可以用Future確認Thread狀態<br>例如Future&lt;?&gt; future = executor.submit(//);</p>
 <p>利用future.isDone();確認對應Thread是否已完成<br>利用future.get();來做等待，當此行做完意味著Thread也執行完畢</p>
 
@@ -172,6 +207,8 @@
     <li><a href="/tags/Chrome/">Chrome</a><small>1</small></li>
   
     <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
   
     <li><a href="/tags/Websphere/">Websphere</a><small>1</small></li>
   
