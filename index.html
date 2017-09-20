@@ -50,6 +50,42 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-09-20T08:30:36.000Z"><a href="/2017/09/20/Webspere-MQ-安全性設定/">2017-09-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/09/20/Webspere-MQ-安全性設定/">Webspere MQ 安全性設定</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>透過WAS連線到MQ伺服器時，容易有安全性問題，需要設定特定使用者或群組才可使用</p>
+<p>流程：<br>佇列管理程式-&gt;通道-&gt;點選對應的伺服器連線-&gt;MCA-&gt;將MCA使用者ID設定為特定User</p>
+<p>若是需要變更使用者帳戶群組等，可以Windows-&gt;netplwiz 進行設定使用者帳戶</p>
+<p>若是對應的User因此有帳戶密碼上的需求，要到Websphere Connection Factory的安全設定，設定特定的User帳號密碼</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-08-17T08:26:11.000Z"><a href="/2017/08/17/Visual-SVN-Update-Commit-Log-Hook/">2017-08-17</a></time>
       
       
@@ -61,7 +97,7 @@
     <div class="entry">
       
         <p>Visual SVN Server Manager</p>
-<p>Right Click on Repository -&gt; Hooks -&gt; Pre-revision property change hook</p>
+<p>Right Click on Repository -&gt; Properties -&gt; Hooks -&gt; Pre-revision property change hook</p>
 <p>Paste below codes</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">set userName=%3</div><div class="line">set propertyName=%4</div><div class="line">set action=%5</div></pre></td></tr></table></figure>
 
@@ -228,7 +264,7 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="search" name="q" results="0" placeholder="Suche">
     <input type="hidden" name="q" value="site:ceny4000.github.io">
   </form>
 </div>
@@ -247,6 +283,8 @@
     <li><a href="/tags/SQL/">SQL</a><small>1</small></li>
   
     <li><a href="/tags/Websphere/">Websphere</a><small>1</small></li>
+  
+    <li><a href="/tags/WebsphereMQ/">WebsphereMQ</a><small>1</small></li>
   
   </ul>
 </div>
