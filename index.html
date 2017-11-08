@@ -50,6 +50,58 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2017-11-08T03:41:17.000Z"><a href="/2017/11/08/DB2指令簡述/">2017-11-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2017/11/08/DB2指令簡述/">DB2指令簡述</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ol>
+<li>建立資料庫<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE TESTDB ALIAS TESTDB USING CODESET UTF-8 TERRITORY TW;</div><div class="line">CREATE DATABASE TESTDB ALIAS TESTDB AUTOMATIC STORAGE NO USING CODESET UTF-8 TERRITORY TW PAGESIZE 4096;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>AUTOMATIC STORAGE：是否自動增長，預設是YES<br>PAGESIZE：每個PAGE預設用多少SIZE，應依照目前資料做分析避免空間浪費或效能浪費，預設是4K(4096)</p>
+<ol>
+<li>建立BufferPool<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CREATE BUFFERPOOL &quot;BFPOOL&quot; SIZE 32768 PAGESIZE 4096 NOT EXTENDED STORAGE;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>BUFFERPOOL用途是在資料庫建立一塊儲存在Memory的暫存區，查詢資料會先從此取得增進效能，Database建立時預設會有有個DEFAULT Bufferpool，此處建立多是為了指定給某個TABLESPACE使用，BufferPool主要考量常被存取的資料庫或會在一段時間重複存取固定資料的情況，BufferPool也需要設定SIZE和PAGESIZE，以此例中可以存32768個PAGE</p>
+<ol>
+<li>TableSpace<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE LARGE TABLESPACE TESTDATA MANAGED BY DATABASE USING(FILE &apos;/testdb/TESTDATA.DBF&apos;   150000);</div><div class="line">CREATE LARGE TABLESPACE TESTDATA MANAGED BY DATABASE USING(FILE &apos;/testdb/TESTDATA.DBF&apos;   150000) BUFFERPOOL BFPOOL;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>TableSpace為劃定一塊區域提供資料作儲存，方便之後控管和備份，150000指的是PAGE數量<br>若是沒有指定TableSpace，資料都將進入預設的USERSPACE1<br>每個 TableSpace都可以指定一塊BufferPool做使用，但是同一TableSpace不能指定兩個BufferPool</p>
+<ol>
+<li>CREATE TABLE 建立資料表<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">--DROP TABLE</div><div class="line">DROP TABLE testinst.TEST;</div><div class="line">--CREATE TABLE</div><div class="line">CREATE TABLE testinst.TEST (</div><div class="line">TEST_ID    CHAR(7)         NOT NULL,</div><div class="line">TEST_DESC    VARCHAR(100)         NOT NULL</div><div class="line">)</div><div class="line">DATA CAPTURE NONE</div><div class="line">IN TESTDATA</div><div class="line">INDEX IN TESTDATA;</div><div class="line"></div><div class="line">--CREATE INDEX</div><div class="line">ALTER TABLE testinst.TEST ADD CONSTRAINT PK_TEST PRIMARY KEY (</div><div class="line">TEST_ID</div><div class="line">);</div><div class="line"></div><div class="line">--COMMENTS</div><div class="line">COMMENT ON TABLE testinst.TEST IS &apos;測試檔&apos;;</div><div class="line">COMMENT ON testinst.TEST (</div><div class="line">TEST_ID     IS  &apos;測試ID&apos;,</div><div class="line">TEST_DESC     IS  &apos;測試說明&apos;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>建立資料表的語法，要給予資料表的TableSpace及Inde的TableSpace，PrimaryKey也為Index的一種，若未指定將放進預設的USERSPACE1</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-09-20T08:30:36.000Z"><a href="/2017/09/20/Webspere-MQ-安全性設定/">2017-09-20</a></time>
       
       
@@ -277,6 +329,8 @@
   <ul class="entry">
   
     <li><a href="/tags/Chrome/">Chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/DB2-SQL/">DB2 SQL</a><small>1</small></li>
   
     <li><a href="/tags/Java/">Java</a><small>1</small></li>
   
