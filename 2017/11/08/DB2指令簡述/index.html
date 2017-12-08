@@ -69,6 +69,9 @@
 <p>TableSpace為劃定一塊區域提供資料作儲存，方便之後控管和備份，150000指的是PAGE數量<br>若是沒有指定TableSpace，資料都將進入預設的USERSPACE1<br>每個 TableSpace都可以指定一塊BufferPool做使用，但是同一TableSpace不能指定兩個BufferPool</p>
 <p>四、CREATE TABLE 建立資料表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">--DROP TABLE</div><div class="line">DROP TABLE testinst.TEST;</div><div class="line">--CREATE TABLE</div><div class="line">CREATE TABLE testinst.TEST (</div><div class="line">TEST_ID    CHAR(7)         NOT NULL,</div><div class="line">TEST_DESC    VARCHAR(100)         NOT NULL</div><div class="line">)</div><div class="line">DATA CAPTURE NONE</div><div class="line">IN TESTDATA</div><div class="line">INDEX IN TESTDATA;</div><div class="line"></div><div class="line">--CREATE INDEX</div><div class="line">ALTER TABLE testinst.TEST ADD CONSTRAINT PK_TEST PRIMARY KEY (</div><div class="line">TEST_ID</div><div class="line">);</div><div class="line"></div><div class="line">--COMMENTS</div><div class="line">COMMENT ON TABLE testinst.TEST IS &apos;測試檔&apos;;</div><div class="line">COMMENT ON testinst.TEST (</div><div class="line">TEST_ID     IS  &apos;測試ID&apos;,</div><div class="line">TEST_DESC     IS  &apos;測試說明&apos;</div><div class="line">);</div></pre></td></tr></table></figure></p>
 <p>建立資料表的語法，要給予資料表的TableSpace及Inde的TableSpace，PrimaryKey也為Index的一種，若未指定將放進預設的USERSPACE1</p>
+<p>五、DB2執行DDL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db2 -tvf TESTScrpt.DDL &gt; TESTScrpt.OUT</div></pre></td></tr></table></figure>
+<p>將檔案丟到db2資料夾的BIN底下直接執行，執行完成後會產生.OUT檔結果<br>使用時需要注意編碼，在Windows下如有中文，DDL應該為BIG5編碼</p>
 
       
     </div>
@@ -78,7 +81,7 @@
         
   
   <div class="tags">
-    <a href="/tags/SQL/">SQL</a>, <a href="/tags/DB2/">DB2</a>
+    <a href="/tags/DB2/">DB2</a>, <a href="/tags/SQL/">SQL</a>
   </div>
 
         
@@ -107,7 +110,7 @@
 
 
 <section id="comment">
-  <h1 class="title">Kommentare</h1>
+  <h1 class="title">Comments</h1>
 
   
       <div id="fb-root"></div>
@@ -130,7 +133,7 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="Search">
     <input type="hidden" name="q" value="site:ceny4000.github.io">
   </form>
 </div>
@@ -145,8 +148,6 @@
     <li><a href="/tags/Chrome/">Chrome</a><small>1</small></li>
   
     <li><a href="/tags/DB2/">DB2</a><small>1</small></li>
-  
-    <li><a href="/tags/DB2-SQL/">DB2 SQL</a><small>0</small></li>
   
     <li><a href="/tags/Java/">Java</a><small>1</small></li>
   
