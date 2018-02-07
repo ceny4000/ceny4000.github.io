@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Java ExecutorService 多執行緒 | Liy’s</title>
+  <title>AIX指令簡述 | Liy’s</title>
   <meta name="author" content="Liyard">
   
-  <meta name="description" content="Java 8 開多執行緒
-12345678910111213141516//共開多少threadExecutorService executor = null;try &amp;#123;    executor = Executors.newFixedThreadPool(1);    executor.">
+  <meta name="description" content="一、Grant sudo (給予特定User sudo權限)輸入 /usr/sbin/visudo將會開啟編輯sudo file 在底下找到
+User privilege specificationroot ALL=(ALL) ALL
+自己新增user 例如增加liys ALL=(ALL) ALL
+">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Java ExecutorService 多執行緒"/>
+  <meta property="og:title" content="AIX指令簡述"/>
   <meta property="og:site_name" content="Liy’s"/>
 
   
@@ -52,20 +54,28 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-07-20T06:48:49.000Z"><a href="/2017/07/20/Java-ExecutorService-多執行緒/">2017-07-20</a></time>
+        <time datetime="2018-02-07T10:03:53.000Z"><a href="/2018/02/07/AIX指令簡述/">2018-02-07</a></time>
       
       
   
-    <h1 class="title">Java ExecutorService 多執行緒</h1>
+    <h1 class="title">AIX指令簡述</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Java 8 開多執行緒</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//共開多少thread</div><div class="line">ExecutorService executor = null;</div><div class="line">try &#123;</div><div class="line">    executor = Executors.newFixedThreadPool(1);</div><div class="line">    executor.submit(() -&gt; &#123;</div><div class="line">        //You&apos;re Source code</div><div class="line">    &#125;);</div><div class="line">&#125; catch (Exception e) &#123;</div><div class="line"></div><div class="line">&#125; finally &#123;</div><div class="line">    try &#123;</div><div class="line">        //都送出後shutdown，thread才會回收</div><div class="line">        executor.shutdown();</div><div class="line">    &#125; catch (Exception e) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以用Future確認Thread狀態<br>例如Future&lt;?&gt; future = executor.submit(//);</p>
-<p>利用future.isDone();確認對應Thread是否已完成<br>利用future.get();來做等待，當此行做完意味著Thread也執行完畢</p>
+        <p>一、Grant sudo (給予特定User sudo權限)<br>輸入 /usr/sbin/visudo<br>將會開啟編輯sudo file 在底下找到</p>
+<h1 id="User-privilege-specification"><a href="#User-privilege-specification" class="headerlink" title="User privilege specification"></a>User privilege specification</h1><p>root ALL=(ALL) ALL</p>
+<p>自己新增user 例如增加<br>liys ALL=(ALL) ALL</p>
+<p>系統會將設定存至 /etc/sudores</p>
+<p>二、chown (變更檔案資料夾擁有者)<br>針對單一檔案/資料夾<br>chown liys:groupA /tmp/data</p>
+<p>包含資料夾內所有檔案/資料夾<br>chown -R liys:groupA /tmp/data</p>
+<p>三、crontab (排程)<br>要建立crontab建議是預先編輯好一個cron file<br>用 crontab mycronjobs 指令<br>/var/spool/cron/crontabs/ 底下會產生一個以當前user命名的檔案，即是crontab內容</p>
+<p>※使用時需注意權限及位置，crontab執行指令預設將在/home/username/底下執行</p>
+<p>四、nohup (背景執行)<br>要背景執行一個執行檔可用nohup指令<br>例如 nohup sh startServer.sh</p>
+<p>五、chlang (變更語系)<br>AIX在預設安裝時語言是en_US，但是在UTF-8環境下會有大量亂碼<br>要變更語系可以用chlang或是直接編輯/etc/environment<br>語系文字的大小寫也會影響UTF-8相關設定</p>
+<p>繁體中文 (UTF-8)    Zh_TW<br>繁體中文 (UTF-8)    ZH_TW<br>繁體中文 (euc_tw)    zh_TW<br>英文    en_US<br>英文 (UTF-8)    EN_US</p>
+<p>六、netstat (網路狀態)<br>netstat -Aan<br>查詢目前每個Port的佔用狀況</p>
 
       
     </div>
@@ -75,7 +85,7 @@
         
   
   <div class="tags">
-    <a href="/tags/Java/">Java</a>
+    <a href="/tags/AIX/">AIX</a>, <a href="/tags/Linux/">Linux</a>
   </div>
 
         
@@ -118,7 +128,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://ceny4000.github.io/2017/07/20/Java-ExecutorService-多執行緒/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://ceny4000.github.io/2018/02/07/AIX指令簡述/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>

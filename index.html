@@ -50,6 +50,50 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2018-02-07T10:03:53.000Z"><a href="/2018/02/07/AIX指令簡述/">2018-02-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2018/02/07/AIX指令簡述/">AIX指令簡述</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>一、Grant sudo (給予特定User sudo權限)<br>輸入 /usr/sbin/visudo<br>將會開啟編輯sudo file 在底下找到</p>
+<h1 id="User-privilege-specification"><a href="#User-privilege-specification" class="headerlink" title="User privilege specification"></a>User privilege specification</h1><p>root ALL=(ALL) ALL</p>
+<p>自己新增user 例如增加<br>liys ALL=(ALL) ALL</p>
+<p>系統會將設定存至 /etc/sudores</p>
+<p>二、chown (變更檔案資料夾擁有者)<br>針對單一檔案/資料夾<br>chown liys:groupA /tmp/data</p>
+<p>包含資料夾內所有檔案/資料夾<br>chown -R liys:groupA /tmp/data</p>
+<p>三、crontab (排程)<br>要建立crontab建議是預先編輯好一個cron file<br>用 crontab mycronjobs 指令<br>/var/spool/cron/crontabs/ 底下會產生一個以當前user命名的檔案，即是crontab內容</p>
+<p>※使用時需注意權限及位置，crontab執行指令預設將在/home/username/底下執行</p>
+<p>四、nohup (背景執行)<br>要背景執行一個執行檔可用nohup指令<br>例如 nohup sh startServer.sh</p>
+<p>五、chlang (變更語系)<br>AIX在預設安裝時語言是en_US，但是在UTF-8環境下會有大量亂碼<br>要變更語系可以用chlang或是直接編輯/etc/environment<br>語系文字的大小寫也會影響UTF-8相關設定</p>
+<p>繁體中文 (UTF-8)    Zh_TW<br>繁體中文 (UTF-8)    ZH_TW<br>繁體中文 (euc_tw)    zh_TW<br>英文    en_US<br>英文 (UTF-8)    EN_US</p>
+<p>六、netstat (網路狀態)<br>netstat -Aan<br>查詢目前每個Port的佔用狀況</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2017-11-08T03:41:17.000Z"><a href="/2017/11/08/DB2指令簡述/">2017-11-08</a></time>
       
       
@@ -307,7 +351,7 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="Buscar">
     <input type="hidden" name="q" value="site:ceny4000.github.io">
   </form>
 </div>
@@ -316,14 +360,18 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
+  
+    <li><a href="/tags/AIX/">AIX</a><small>1</small></li>
   
     <li><a href="/tags/Chrome/">Chrome</a><small>1</small></li>
   
     <li><a href="/tags/DB2/">DB2</a><small>1</small></li>
   
     <li><a href="/tags/Java/">Java</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
   
     <li><a href="/tags/SQL/">SQL</a><small>2</small></li>
   
