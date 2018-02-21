@@ -62,6 +62,7 @@
       
         <p>一、Grant sudo (給予特定User sudo權限)<br>輸入 /usr/sbin/visudo<br>將會開啟編輯sudo file 在底下找到<br>User privilege specification<br>root ALL=(ALL) ALL</p>
 <p>自己新增user 例如增加<br>liys ALL=(ALL) ALL</p>
+<p>若是希望sudo時不用另外輸入密碼，可以輸入類似<br>liys ALL=(ALL) NOPASSWD:ALL</p>
 <p>系統會將設定存至 /etc/sudores</p>
 <p>二、chown (變更檔案資料夾擁有者)<br>針對單一檔案/資料夾<br>chown liys:groupA /tmp/data</p>
 <p>包含資料夾內所有檔案/資料夾<br>chown -R liys:groupA /tmp/data</p>
