@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>AIX指令簡述 | Liy’s</title>
+  <title>Maven Import Jar File | Liy’s</title>
   <meta name="author" content="Liyard">
   
-  <meta name="description" content="一、Grant sudo (給予特定User sudo權限)輸入 /usr/sbin/visudo將會開啟編輯sudo file 在底下找到User privilege specificationroot ALL=(ALL) ALL
-自己新增user 例如增加liys ALL=(ALL) ALL
-若">
+  <meta name="description" content="當有些不存在於網路上的Jar檔，想加入Maven，可以透過以下指令將特定的Jar放進Maven Repository
+12345678910&amp;lt;!-- DB2 Driver --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.ibm.db2.jcc&amp;lt">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="AIX指令簡述"/>
+  <meta property="og:title" content="Maven Import Jar File"/>
   <meta property="og:site_name" content="Liy’s"/>
 
   
@@ -53,29 +52,18 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-02-07T10:03:53.000Z"><a href="/2018/02/07/AIX指令簡述/">2018-02-07</a></time>
+        <time datetime="2018-06-12T06:51:44.000Z"><a href="/2018/06/12/Maven-Import-Jar-File/">2018-06-12</a></time>
       
       
   
-    <h1 class="title">AIX指令簡述</h1>
+    <h1 class="title">Maven Import Jar File</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>一、Grant sudo (給予特定User sudo權限)<br>輸入 /usr/sbin/visudo<br>將會開啟編輯sudo file 在底下找到<br>User privilege specification<br>root ALL=(ALL) ALL</p>
-<p>自己新增user 例如增加<br>liys ALL=(ALL) ALL</p>
-<p>若是希望sudo時不用另外輸入密碼，可以輸入類似<br>liys ALL=(ALL) NOPASSWD:ALL</p>
-<p>若是有特定指令才可允許，可以輸入<br>liys ALL=(ALL) NOPASSWD:/usr/a.sh, /usr/b.sh</p>
-<p>系統會將設定存至 /etc/sudores</p>
-<p>二、chown (變更檔案資料夾擁有者)<br>針對單一檔案/資料夾<br>chown liys:groupA /tmp/data</p>
-<p>包含資料夾內所有檔案/資料夾<br>chown -R liys:groupA /tmp/data</p>
-<p>三、crontab (排程)<br>要建立crontab建議是預先編輯好一個cron file<br>用 crontab mycronjobs 指令<br>/var/spool/cron/crontabs/ 底下會產生一個以當前user命名的檔案，即是crontab內容</p>
-<p>※使用時需注意權限及位置，crontab執行指令預設將在/home/username/底下執行</p>
-<p>四、nohup (背景執行)<br>要背景執行一個執行檔可用nohup指令<br>例如 nohup sh startServer.sh</p>
-<p>五、chlang (變更語系)<br>AIX在預設安裝時語言是en_US，但是在UTF-8環境下會有大量亂碼<br>要變更語系可以用chlang或是直接編輯/etc/environment<br>語系文字的大小寫也會影響UTF-8相關設定</p>
-<p>繁體中文 (UTF-8)    Zh_TW<br>繁體中文 (UTF-8)    ZH_TW<br>繁體中文 (euc_tw)    zh_TW<br>英文    en_US<br>英文 (UTF-8)    EN_US</p>
-<p>六、netstat (網路狀態)<br>netstat -Aan<br>查詢目前每個Port的佔用狀況</p>
+        <p>當有些不存在於網路上的Jar檔，想加入Maven，可以透過以下指令將特定的Jar放進Maven Repository</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;!-- DB2 Driver --&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.ibm.db2.jcc&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;db2jcc4&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;10.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line"></div><div class="line">mvn install:install-file -Dfile=C:\workspace\app\lib\db2jcc4.jar -DgroupId=com.ibm.db2.jcc -DartifactId=db2jcc4 -Dversion=10.1 -Dpackaging=jar -DgeneratePom=true</div><div class="line"></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -85,7 +73,7 @@
         
   
   <div class="tags">
-    <a href="/tags/AIX/">AIX</a>, <a href="/tags/Linux/">Linux</a>
+    <a href="/tags/Maven/">Maven</a>
   </div>
 
         
@@ -128,7 +116,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://ceny4000.github.io/2018/02/07/AIX指令簡述/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://ceny4000.github.io/2018/06/12/Maven-Import-Jar-File/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
