@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Maven Import Jar File | Liy’s</title>
+  <title>DB2 Windows資料庫綁定及權限設定 | Liy’s</title>
   <meta name="author" content="Liyard">
   
-  <meta name="description" content="當有些不存在於網路上的Jar檔，想加入Maven，可以透過以下指令將特定的Jar放進Maven Repository
-12345678910&amp;lt;!-- DB2 Driver --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.ibm.db2.jcc&amp;lt">
+  <meta name="description" content="DB2 Windwos版本安裝後權限設定簡介
+DB2 於安裝時預設會建立一個db2admin帳戶，此賬戶擁有本機端admin權限，並且會在本機端增加DB2ADMNS及DB2USERS兩個群組，於安裝時會將db2admin加入此兩個群組，安裝完畢後此群組成員即擁有相關權限
+若是需要於安裝後拔除admi">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Maven Import Jar File"/>
+  <meta property="og:title" content="DB2 Windows資料庫綁定及權限設定"/>
   <meta property="og:site_name" content="Liy’s"/>
 
   
@@ -52,18 +53,22 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2018-06-12T06:51:44.000Z"><a href="/2018/06/12/Maven-Import-Jar-File/">2018-06-12</a></time>
+        <time datetime="2018-07-24T06:40:43.000Z"><a href="/2018/07/24/DB2-Windows資料庫綁定及權限設定/">2018-07-24</a></time>
       
       
   
-    <h1 class="title">Maven Import Jar File</h1>
+    <h1 class="title">DB2 Windows資料庫綁定及權限設定</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>當有些不存在於網路上的Jar檔，想加入Maven，可以透過以下指令將特定的Jar放進Maven Repository</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;!-- DB2 Driver --&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;com.ibm.db2.jcc&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;db2jcc4&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;10.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line"></div><div class="line">mvn install:install-file -Dfile=C:\workspace\app\lib\db2jcc4.jar -DgroupId=com.ibm.db2.jcc -DartifactId=db2jcc4 -Dversion=10.1 -Dpackaging=jar -DgeneratePom=true</div><div class="line"></div></pre></td></tr></table></figure>
+        <p>DB2 Windwos版本安裝後權限設定簡介</p>
+<p>DB2 於安裝時預設會建立一個db2admin帳戶，此賬戶擁有本機端admin權限，並且會在本機端增加DB2ADMNS及DB2USERS兩個群組，於安裝時會將db2admin加入此兩個群組，安裝完畢後此群組成員即擁有相關權限</p>
+<p>若是需要於安裝後拔除admin權限，可於Windows服務中將登入身份為db2admin的帳戶全數改為Local System</p>
+<p>若是因為各種原因導致群組或帳戶沒順利建立，可以自行手動建立，建立後則要把此兩項群組綁定給DB2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db2extsec -u DB2USERS -a DB2ADMNS</div></pre></td></tr></table></figure>
+<p>若以上指令執行失敗，可以將DB2COPY1 於服務畫面先Stop後再執行</p>
 
       
     </div>
@@ -73,7 +78,7 @@
         
   
   <div class="tags">
-    <a href="/tags/Maven/">Maven</a>
+    <a href="/tags/DB2/">DB2</a>
   </div>
 
         
@@ -116,7 +121,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://ceny4000.github.io/2018/06/12/Maven-Import-Jar-File/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://ceny4000.github.io/2018/07/24/DB2-Windows資料庫綁定及權限設定/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
